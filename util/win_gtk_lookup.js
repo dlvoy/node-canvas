@@ -1,11 +1,5 @@
 var fs = require('fs')
-var paths = ['C:/libjpeg-turbo']
-
-if (process.arch === 'x64') {
-  paths.unshift('C:/libjpeg-turbo64')
-}
-
-paths.push(process.env.NODECANVAS_LIBJPEGTURBO_PATH)
+var paths = ['C:/GTK', process.env.NODECANVAS_GTK_PATH]
 
 paths.forEach(function(path){
   if (exists(path)) {

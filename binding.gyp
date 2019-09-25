@@ -2,13 +2,14 @@
   'conditions': [
     ['OS=="win"', {
       'variables': {
-        'GTK_Root%': 'C:/GTK',  # Set the location of GTK all-in-one bundle
         'with_jpeg%': 'false',
         'with_gif%': 'false',
         'with_rsvg%': 'false',
         'variables': { # Nest jpeg_root to evaluate it before with_jpeg
+          'GTK_Root%': '<!(node ./util/win_gtk_lookup)',
           'jpeg_root%': '<!(node ./util/win_jpeg_lookup)'
         },
+        'GTK_Root%': '<(GTK_Root)',  # Set the location of GTK all-in-one bundle
         'jpeg_root%': '<(jpeg_root)', # Take value of nested variable
         'conditions': [
           ['jpeg_root==""', {
